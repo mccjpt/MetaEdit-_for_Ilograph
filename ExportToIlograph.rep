@@ -1,0 +1,29 @@
+ExportToIlograph()
+/* exports the graph to https://app.ilograph.com/ */
+/* exports based on subgraph structure based on objects. Does not cover subgraphs based on relationships or properties, or nested symbols or ports. Update MERL generator to support those */
+/* translates illegal IloGraph: : -> _; > -> (>) */
+
+/* To customize _IloOneGraphRelations() in cases there are directed relationships that are n-ary to know which is in the first/binary role */
+
+to '%iloG
+: _
+> $(>)'
+endto
+
+_translators()
+_IloGraphColor()
+$visited = $reported = '
+'
+
+filename id%file ' to IloGraph.txt' encoding 'utf-8' write
+	'resources:' newline
+	_IloGraphResources(@indent)	
+	
+	$visited = '
+'
+	'perspectives:' newline		
+	_IloGraphPerspectives()
+	'  notes: |-' newline
+	_IloGraphDescription()
+	'    Generated from MetaEdit+.' newline	
+close

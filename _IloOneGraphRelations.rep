@@ -1,0 +1,25 @@
+_IloOneGraphRelations()
+
+foreach >() orderby type {
+	@first = 'T'
+	do ~() orderby objectid num { /* first role by oid is taken as from role and others as to role */
+		if @first = 'T' then
+			@first = __('  - from: ' do.() {'o' oid} newline)
+		else
+			@first
+			'    to: ' do .() { 'o' oid } newline
+			'    color: '  variable type;1 '_color' read; newline
+			'    label: ' type;1%iloG
+			if id;1 <> type;1 then ' ' id;1%iloG endif 
+			newline
+		endif
+	}
+	@hasProps = __(do :() {'T'})
+	if @hasProps; then
+		'    description: ' 
+		dowhile :() where id {
+			containers ' is ' dowhile id { id%iloG ' ' }; '. '
+		}
+		newline
+	endif
+}

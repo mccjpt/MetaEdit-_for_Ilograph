@@ -1,0 +1,36 @@
+_IloGraphColor()
+/* Get color for each used language element: object and relationship */
+/* Remark: could generate also here icon from a limited set that are generic, like circle, box etc. but IloGraph has icons fixed to azure, aws etc. making them semantically not generic */
+
+$visited = '
+'
+
+_IloGraphTypesForColor() /* get all types */
+
+$colors = 'gray
+green
+blue
+red
+maroon
+olive
+lime
+yellow
+aqua
+teal
+fuchsia
+navy
+purple'
+
+@ix = '0'
+do $objTypes where id unique id {
+	@ix++%null
+	_IloGraphSetColor(@ix)
+}
+
+@ix = '0'
+do $relTypes where id unique id {
+	@ix++%null
+	_IloGraphSetColor(@ix)
+}
+
+

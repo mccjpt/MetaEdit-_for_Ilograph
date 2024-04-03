@@ -1,0 +1,22 @@
+_IloGraphTypesForColor()
+/* get all object types and relationship types used */
+
+if not $visited =~ oid%wildnl then
+	variable 'visited' append oid newline close
+	variable 'objTypes' append
+		foreach .() {
+			type newline
+			do decompositions {
+				_IloGraphTypesForColor()
+			}
+			do explosions {
+				_IloGraphTypesForColor()
+			}
+		}
+	close
+	variable 'relTypes' append
+		foreach >() {
+			type newline
+		}	
+	close			
+endif

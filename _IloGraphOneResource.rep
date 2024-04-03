@@ -1,0 +1,8 @@
+_IloGraphOneResource(@indent)
+
+@indent '- name: ' _IloGraphID() newline
+@indent '  id: o' oid newline	
+@indent '  subtitle: ' type%iloG newline
+@indent '  color: ' variable type '_color' read; newline
+@indent '  description: ' newline
+_IloGraphDescription(@indent)

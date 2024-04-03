@@ -1,0 +1,3 @@
+_IloGraphID()
+
+if id then id%iloG else type%iloG endif

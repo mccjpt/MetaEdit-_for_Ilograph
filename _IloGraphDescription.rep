@@ -1,0 +1,5 @@
+_IloGraphDescription(@indent)
+
+do :() where id {
+	@indent '    ' containers ': ' dowhile id { id%iloG ' ' };  newline
+}

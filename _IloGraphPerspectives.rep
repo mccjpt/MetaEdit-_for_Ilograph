@@ -1,0 +1,21 @@
+_IloGraphPerspectives()
+
+if not $visited =~ oid%wildnl then
+	variable 'visited' append oid newline close
+	
+	'- name: ' _IloGraphID() newline
+	'  id: o' oid newline
+	'  color: black' newline
+	'  relations:' newline
+	_IloOneGraphRelations()
+
+	foreach .() {
+		do decompositions {
+			_IloOneGraphRelations()
+		}
+		do explosions {
+			_IloOneGraphRelations()
+		}
+	}
+
+endif

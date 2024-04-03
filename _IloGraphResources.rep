@@ -1,0 +1,27 @@
+_IloGraphResources(@indent)
+
+if not $visited =~ oid%wildnl then
+	variable 'visited' append oid newline close
+
+	foreach .() { /* does not report nested symbol structures only subgraphs */
+		if not $reported =~ oid%wildnl then
+			variable 'reported' append oid newline close
+			_IloGraphOneResource(@indent)
+			if decompositions or explosions; then
+				@hasChildren = __(
+					do decompositions { if not $visited =~ oid%wildnl then 'X' endif }
+					do explosions { if not $visited =~ oid%wildnl then 'X' endif }
+				)
+				if @hasChildren <> '' then
+					@indent '  children: ' newline
+					do decompositions {
+						_IloGraphResources('  ' @indent)	
+					}
+					do explosions {
+						_IloGraphResources('  ' @indent)	
+					}	
+				endif
+			endif
+		endif
+	}
+endif

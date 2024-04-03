@@ -1,0 +1,12 @@
+_IloGraphSetColor(@ix)
+/* set color for each language type */
+
+variable id '_color' write 'black' close /* default */
+
+@colIx = '1'
+do $colors where id {
+	if @colIx = @ix then 
+		variable id;1 '_color' write id close
+	endif
+	@colIx++%null
+}
