@@ -1,3 +1,9 @@
 _IloGraphID()
 
-if id then id%iloG else type%iloG endif
+if id then 
+	/* name must be in a single line */
+	@id = id%iloG 
+	do @id where id {id}
+else 
+	type%iloG 
+endif
